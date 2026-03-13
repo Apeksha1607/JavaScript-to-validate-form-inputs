@@ -1,45 +1,58 @@
-body {
-    background-color: #121212;
-    font-family: Arial, sans-serif;
-    color: white;
-    padding: 20px;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-h1 {
-    text-align: center;
-    color: #00d4ff;
-}
+    <script>
+        function validateForm() {
+            var name = document.getElementById("name").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-table {
-    width: 75%;
-    margin: auto;
-    border-collapse: collapse;
-    background-color: #222;
-}
+            if (name === "") {
+                alert("Name field cannot be empty");
+                return false;
+            }
 
-th, td {
-    border: 1px solid #555;
-    padding: 10px;
-    text-align: center;
-}
+            if (email === "") {
+                alert("Email field cannot be empty");
+                return false;
+            }
 
-th {
-    background-color: #333;
-}
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
 
-/* Attendance status colors */
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+</head>
 
-.good {
-    color: #4caf50;
-    font-weight: bold;
-}
+<body>
+    <h1>Registration Form</h1>
 
-.average {
-    color: #ff9800;
-    font-weight: bold;
-}
+    <form onsubmit="return validateForm()">
+        
+        <label>Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your Name"><br><br>
 
-.low {
-    color: #f44336;
-    font-weight: bold;
-}
+        <label>Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Enter your Email id"><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" name="gender" value="Male"> Male<br>
+        <input type="radio" name="gender" value="Female"> Female<br>
+        <input type="radio" name="gender" value="Other"> Other<br><br>
+
+        <label>Date of Birth:</label><br>
+        <input type="date" name="dob"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
